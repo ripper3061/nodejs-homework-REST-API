@@ -2,9 +2,9 @@ const express = require('express')
 const {
   getListContactsController,
   getContactByIdController,
-  // deleteContactController,
+  deleteContactController,
   createNewContactController,
-  // updateContactController,
+  updateContactController,
 } = require("../../controllers/contactsControllers");
 const { validateRequestBody } = require("../../middlewares");
 const {
@@ -19,8 +19,8 @@ router.get('/:contactId', getContactByIdController)
 
 router.post('/', validateRequestBody(contactSchema), createNewContactController)
 
-// router.delete('/:contactId', deleteContactController)
+router.delete('/:contactId', deleteContactController)
 
-// router.put('/:contactId', validateRequestBody(contactSchema), updateContactController)
+router.put('/:contactId', validateRequestBody(contactSchema), updateContactController)
 
 module.exports = router
