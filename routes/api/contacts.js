@@ -1,7 +1,7 @@
 const express = require('express')
 const {
-  // getListContactsController,
-  // getContactByIdController,
+  getListContactsController,
+  getContactByIdController,
   // deleteContactController,
   createNewContactController,
   // updateContactController,
@@ -13,9 +13,9 @@ const {
 
 const router = express.Router()
 
-// router.get('/', getListContactsController)
+router.get('/', getListContactsController)
 
-// router.get('/:contactId', getContactByIdController)
+router.get('/:contactId', getContactByIdController)
 
 router.post('/', validateRequestBody(contactSchema), createNewContactController)
 

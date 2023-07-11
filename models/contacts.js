@@ -11,6 +11,10 @@ const contactSchema = new Schema({
   phone: {
     type: String,
   },
+  favorite: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const Contact = model('contact', contactSchema)
