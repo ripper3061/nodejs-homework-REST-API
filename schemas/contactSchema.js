@@ -9,8 +9,14 @@ const contactSchema = Joi.object({
       .min(4)
       .required(),
     phone: Joi.number().required(),
+    favorite: Joi.boolean().optional(),
+  });
+
+  const updateStatusContactSchema = Joi.object({
+    favorite: Joi.boolean().required(),
   });
 
 module.exports = {
     contactSchema,
+    updateStatusContactSchema,
   };
