@@ -1,11 +1,14 @@
 const { User } = require("../../models/user");
+const bcrypt = require("bcrypt");
 
 const register = async (req, res, next) => {
   try {
     const { email, password } = req.body;
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(password, salt);
     const savedUser = await User.create({
       email,
-      password,
+      password: hashedPassword,
     });
 
     return res.status(201).json({
