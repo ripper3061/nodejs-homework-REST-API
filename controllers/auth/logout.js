@@ -8,7 +8,6 @@ const logout = async (req, res, next) => {
       return next(res.status(401).json({ message: "Not authorized" }));
     }
     const logoutUser = await User.findByIdAndUpdate(id, { token: null });
-    console.log(logoutUser);
     return res.status(204).json(logoutUser);
   } catch (error) {
     next(error);
