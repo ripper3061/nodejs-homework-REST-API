@@ -6,6 +6,7 @@ const updateStatusContactController = async (req, res, next) => {
     if (!("favorite" in req.body)) {
       return next(res.status(404).json({ message: "missing field favorite" }));
     }
+
     const { contactId } = req.params;
     const contactById = await Contact.findById(contactId);
     if (!contactById) {
