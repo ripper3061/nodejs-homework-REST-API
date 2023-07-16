@@ -7,11 +7,12 @@ const {
   updateStatusContactController,
 } = require("./contacts");
 
-const { register, login } = require("./auth");
+const { register, login, logout } = require("./auth");
 
 module.exports = {
   register,
   login,
+  logout,
   getListContactsController,
   getContactByIdController,
   deleteContactController,
