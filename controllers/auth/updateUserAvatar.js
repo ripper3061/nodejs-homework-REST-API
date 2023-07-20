@@ -25,7 +25,7 @@ const updateUserAvatar = async (req, res, next) => {
       await fs.rename(tmpPath, publicPath);
     } catch (error) {
       await fs.unlink(tmpPath);
-      throw error;
+      return next(error);
     }
 
     const id = req.user._id;
