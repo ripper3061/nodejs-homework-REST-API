@@ -1,6 +1,7 @@
 const { User } = require("../../models/user");
 const path = require("path");
 const fs = require("fs").promises;
+const Jimp = require("jimp");
 
 const updateUserAvatar = async (req, res, next) => {
   try {
@@ -11,6 +12,14 @@ const updateUserAvatar = async (req, res, next) => {
       "../../public/avatars",
       filename
     );
+
+    try {
+      const img = await Jimp.read(tmpPath);
+      await img.resize(250, 250);
+      await img.writeAsync(tmpPath);
+    } catch (err) {
+      return next(err);
+    }
 
     try {
       await fs.rename(tmpPath, publicPath);
