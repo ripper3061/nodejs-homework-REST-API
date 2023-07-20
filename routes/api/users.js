@@ -5,11 +5,13 @@ const {
   logout,
   current,
   updateSubscription,
+  updateUserAvatar,
 } = require("../../controllers");
 const {
   validateRequestBody,
   auth,
   checkUpdateSubscriptionRequest,
+  upload,
 } = require("../../middlewares");
 const { userValidateSchema } = require("../../schemas/userSchema");
 
@@ -20,6 +22,7 @@ userRouter.post("/login", validateRequestBody(userValidateSchema), login);
 userRouter.get("/logout", auth, logout);
 userRouter.get("/current", auth, current);
 userRouter.patch("/", auth, checkUpdateSubscriptionRequest, updateSubscription);
+userRouter.patch("/avatars", auth, upload.single("avatar"), updateUserAvatar);
 
 module.exports = {
   userRouter,
