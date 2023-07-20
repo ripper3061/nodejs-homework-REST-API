@@ -22,7 +22,7 @@ const updateUserAvatar = async (req, res, next) => {
     const id = req.user._id;
     const updatedUser = await User.findByIdAndUpdate(
       id,
-      { avatarURL: `avatars/${filename}` },
+      { avatarURL: `avatars/${id}_${filename}` },
       { new: true }
     );
 
