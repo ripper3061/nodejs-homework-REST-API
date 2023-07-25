@@ -19,6 +19,10 @@ const login = async (req, res, next) => {
       );
     }
 
+    if (!storedUser.verify) {
+      return next(res.status(401).json({ message: "Email is not verified" }));
+    }
+
     const isPasswordValid = await bcrypt.compare(password, storedUser.password);
 
     if (!isPasswordValid) {

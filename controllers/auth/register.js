@@ -1,6 +1,7 @@
 const { User } = require("../../models/user");
 const bcrypt = require("bcrypt");
 const gravatar = require("gravatar");
+const { nanoid } = require("nanoid");
 
 const register = async (req, res, next) => {
   try {
@@ -9,10 +10,13 @@ const register = async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(password, salt);
     const avatarURL = gravatar.url(email);
 
+    const verificationToken = nanoid();
+
     const savedUser = await User.create({
       email,
       password: hashedPassword,
       avatarURL,
+      verificationToken,
     });
 
     return res.status(201).json({
